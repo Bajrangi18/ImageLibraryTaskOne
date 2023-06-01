@@ -84,7 +84,7 @@ const App = () => {
     <NavigationContainer>
           <Drawer.Navigator initialRouteName="Home" screenOptions={{drawerStyle:{backgroundColor:'#181818'},drawerActiveTintColor:'white',drawerActiveBackgroundColor:'rgba(255,255,255,0.25)',drawerInactiveTintColor:"rgba(255,255,255,0.7)",drawerInactiveBackgroundColor:'rgba(255,255,255,0.1)'}}  >
             <Drawer.Screen  name="Home" options={{headerStyle:{backgroundColor:'black',height:headerVal,opacity:headerOpa},headerTintColor:'white'}}>
-              {props => <HomePage {...props} setShowHead={setShowHead} netHolder={netHolder} testTry={testTry}/> }
+              {props => <HomePage {...props} setShowHead={setShowHead} testTry={testTry}/> }
             </Drawer.Screen>
             <Drawer.Screen  name="Search" options={{headerStyle:{backgroundColor:'black',height:headerVal,opacity:headerOpa},headerTintColor:'white'}}>
               {props => <SearchPage {...props} setShowHead={setShowHead} netHolder={netHolder} /> }

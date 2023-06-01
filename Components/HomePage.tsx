@@ -8,7 +8,7 @@ interface urlHolder {
   url:string,
   index:number
 }
-const HomePage = ({navigation,setShowHead,netHolder,testTry}) => {
+const HomePage = ({navigation,setShowHead,testTry}) => {
   const pageLimiter = 3
   const [page,setPage] = useState(1)
   const [imageUrls,setImageUrls] = useState<urlHolder[]>([])
@@ -54,7 +54,6 @@ const HomePage = ({navigation,setShowHead,netHolder,testTry}) => {
   }
 
   const callData = async () => {
-    console.log("In here")
     const tempDataHolder = await getData()
     var requestOptions = {
         method: 'GET',
