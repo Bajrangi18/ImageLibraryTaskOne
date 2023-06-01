@@ -27,6 +27,7 @@ const HomePage = ({navigation,setShowHead,testTry}) => {
       if(testTry!=null){
         sizeHolder.current = 0
         setPage(testTry?1:pageLimiter)
+        console.log("called")
         setImageUrls([])
         callData()    
       } 
@@ -64,7 +65,7 @@ const HomePage = ({navigation,setShowHead,testTry}) => {
       .then(result => {
         if(tempDataHolder!=JSON.parse(result).photos.photo){
           for(let [ind,val] of JSON.parse(result).photos.photo.entries()){
-            // console.log(sizeHolder.current,ind,sizeHolder.current,"Main Fetch")
+            console.log(sizeHolder.current,ind,sizeHolder.current,"Main Fetch")
             let obj:urlHolder = {url:val.url_s,index:sizeHolder.current}
             setImageUrls(prev=>[...prev,obj])
             sizeHolder.current = sizeHolder.current + 1
@@ -88,15 +89,19 @@ const HomePage = ({navigation,setShowHead,testTry}) => {
       });
     }
 
-  const Item = ({imageUrl}) => {
-    return(
-      <View>
-        <Pressable onPress={()=>{setShowHead(false);setIndexPos(imageUrl.index);setModalVisible(true);}}>
-              <Image source={{uri:imageUrl.url}} style={{width: itemWidth,height: itemWidth,margin: 0.7}} resizeMode="cover" />
-        </Pressable>
-      </View>
-    )
-  };
+    const Item = ({imageUrl}) => {
+      if (!imageUrl.url) {
+        return null; // Skip rendering if the url is null
+      }
+      return(
+        <View>
+          <Pressable onPress={()=>{setShowHead(false);setIndexPos(imageUrl.index);setModalVisible(true);}}>
+                <Image source={{uri:imageUrl.url}} style={{width: itemWidth,height: itemWidth,margin: 0.7}} resizeMode="cover" />
+          </Pressable>
+        </View>
+      )
+    };
+
     return(
         <View style={{justifyContent: 'center',alignItems: 'center',backgroundColor:'black',height:"100%"}}>
         <Modal onRequestClose={()=>{setModalVisible(false);setShowHead(true);setIndexPos(0)}} visible={modalVisible} transparent={true} style={{height:Dimensions.get("window").height,width:Dimensions.get("window").width,justifyContent:'center',alignItems:'center'}}  >

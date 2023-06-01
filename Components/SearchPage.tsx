@@ -46,6 +46,9 @@ const SearchPage = ({navigation,setShowHead,netHolder}) => {
     }
 
     const Item = ({imageUrl}) => {
+        if (!imageUrl.url) {
+            return null; // Skip rendering if the url is null
+          }
         return(
           <View>
             <Pressable onPress={()=>{setShowHead(false);setIndexPos(imageUrl.index);setModalVisible(true);}}>
